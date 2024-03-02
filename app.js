@@ -14,13 +14,14 @@ const router = require('./routes/productRoute');
 //use new route
 app.use("/", router)
 
+const PORT = process.env.PORT || 5000
 //listening 
 const start = async () => {
  try {
    //connect database
    await connectDb(process.env.MONGODB_URL)
    //listen for request
-    app.listen(5000, ()=>[
+    app.listen(PORT , ()=>[
         console.log("server is listening")
     ])
  } catch (error) {
