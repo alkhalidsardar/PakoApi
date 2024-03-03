@@ -1,6 +1,6 @@
 const ApiModel = require("../model/model");
 
-const product = async (req, res) => {
+const product = async (req, res  ) => {
   try {
     // Access data based on the filter
     let myData = await ApiModel.find();
@@ -18,8 +18,16 @@ const product = async (req, res) => {
       myData = projects
     } 
 
-    // Send filtered projects as a response
-    res.status(200).json({ myData });
+  
+
+    //header 
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+ 
+  // Send filtered projects as a response
+  res.status(200).json({ myData });
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
